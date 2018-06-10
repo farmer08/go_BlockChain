@@ -37,6 +37,8 @@ func NewBlock(data string,prevBlockHash []byte) *Block  {
 设置区块的hash值
  */
 func (block *Block)SetHash()  {
+	//方法一
+	
 	//temp:=[][]byte{//二维的[][]byte，需要传进去一个[]byte
 	//	IntToByte(block.Version),
 	//	block.PreBlockHash,
@@ -49,6 +51,7 @@ func (block *Block)SetHash()  {
 	////对区块进行sha256哈希算法，返回值为[32]byte 数组，不是切片
 	//hash := sha256.Sum256(data)
 
+	//方法二
 	timestamp := []byte(strconv.FormatInt(block.TimeStamp, 10))
 	headers := bytes.Join([][]byte{block.PreBlockHash, block.Data, timestamp}, []byte{})
 	hash := sha256.Sum256(headers)
