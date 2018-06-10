@@ -38,7 +38,7 @@ func NewBlock(data string,prevBlockHash []byte) *Block  {
  */
 func (block *Block)SetHash()  {
 	//方法一
-	
+
 	//temp:=[][]byte{//二维的[][]byte，需要传进去一个[]byte
 	//	IntToByte(block.Version),
 	//	block.PreBlockHash,
