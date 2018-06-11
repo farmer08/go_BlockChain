@@ -2,9 +2,6 @@ package main
 
 import (
 	"time"
-	"strconv"
-	"bytes"
-	"crypto/sha256"
 )
 
 type Block struct {
@@ -26,16 +23,21 @@ func NewBlock(data string,prevBlockHash []byte) *Block  {
 		Version:1,
 		PreBlockHash:prevBlockHash,
 		TimeStamp:time.Now().Unix(),
-		TargetBits:10,
-		Nonce:5,
+		TargetBits:targetBits,
+		//Nonce:5,
 		MerkelRoot:[]byte{},
 		Data:[]byte(data)}
-	block.SetHash()
+	//block.SetHash()
+	pow:=NewProofOfWork(block)
+	nonce,hash := pow.Run()
+	block.Nonce=nonce
+	block.Hash = hash
 	return block
 }
 /**
 设置区块的hash值
  */
+ /*
 func (block *Block)SetHash()  {
 	//方法一
 
@@ -58,7 +60,7 @@ func (block *Block)SetHash()  {
 
 	block.Hash= hash[:]
 }
-
+*/
 
 /**
 创建比特币创世区块，即它的第一个区块，它的前一个区块的hash值为空

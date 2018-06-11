@@ -10,11 +10,13 @@ func main()  {
 		fmt.Println("========block num",i)
 		fmt.Printf("Data : %s \n",block.Data)
 		fmt.Println("Version :",block.Version)
-		fmt.Printf("hash : %x \n",block.Hash)
+		fmt.Printf("hash        :%x \n",block.Hash)
 		fmt.Printf("PreBlockHash:%x \n",block.PreBlockHash)
 		fmt.Println("TimeStamp : ",block.TimeStamp)
 		fmt.Println("TargetBits : ",block.TargetBits)
-		fmt.Printf("Nonce : %x \n",block.Nonce)
+		fmt.Printf("Nonce : %d \n",block.Nonce)
 		fmt.Printf("MerkelRoot : %x \n",block.MerkelRoot)
+		pow:=NewProofOfWork(block)
+		fmt.Printf("Isvalid : %v \n",pow.IsValid())
 	}
 }
